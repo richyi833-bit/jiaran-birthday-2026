@@ -132,3 +132,10 @@
 #memory .memory-cinema.photo-pending .photo-loading,#memory .memory-cinema.photo-error .photo-loading{display:flex}
 #memory .memory-cinema.photo-pending>img,#memory .memory-cinema.photo-error>img{visibility:hidden!important}
 #memory .memory-cinema.photo-error .photo-loading{cursor:pointer}
+
+
+/* V1.8.1: preserve all subjects in landscape group photos without stretching. */
+#memory .memory-cinema.is-wide::before{content:"";position:absolute;inset:-16px;z-index:0;background:var(--photo-bg) center/cover no-repeat;filter:blur(15px) brightness(.38);transform:scale(1.08)}
+#memory .memory-cinema.is-wide>img{position:relative;z-index:1;object-fit:contain;object-position:center center!important;transform:none;animation:memWideIn .65s ease both;filter:saturate(.97)}
+#memory .memory-cinema.is-wide .memory-vignette{z-index:2;background:linear-gradient(0deg,#071c13a6 0%,transparent 13%,transparent 89%,#071c136b 100%);box-shadow:none}
+@keyframes memWideIn{from{opacity:.2}to{opacity:1}}
