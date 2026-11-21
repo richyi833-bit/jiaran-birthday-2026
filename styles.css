@@ -126,3 +126,9 @@
 @keyframes musicSpin{to{transform:rotate(360deg)}}
 @keyframes musicNudge{0%,100%{opacity:.7}50%{opacity:1}}
 @media(prefers-reduced-motion:reduce){.music-control.is-playing .music-glyph,.music-hint{animation:none!important}}
+
+/* V1.9: picture loading status during first mobile download */
+#memory .memory-cinema .photo-loading{display:none;position:absolute;inset:0;z-index:3;align-items:center;justify-content:center;padding:28px;text-align:center;color:#f1ddba;font-size:13px;letter-spacing:.08em;background:radial-gradient(ellipse at 50% 45%,#254a33,#071b13 74%)}
+#memory .memory-cinema.photo-pending .photo-loading,#memory .memory-cinema.photo-error .photo-loading{display:flex}
+#memory .memory-cinema.photo-pending>img,#memory .memory-cinema.photo-error>img{visibility:hidden!important}
+#memory .memory-cinema.photo-error .photo-loading{cursor:pointer}
