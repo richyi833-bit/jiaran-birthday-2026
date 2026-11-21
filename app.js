@@ -34,9 +34,20 @@ let timer;function toast(t){$('toast').textContent=t;$('toast').classList.add('s
 const audio=$('audio');
 const musicIDs=['musicBtn','memMusic','transitionMusic','partnersMusic','treeMusic','letterMusic','braceletMusic','cardMusic'];
 let musicPreferredOn=true;
-audio.loop=true;audio.volume=.44;
+const MUSIC_IN_POINT=4.25; // Original recording is silent for its first 4.37 seconds.
+audio.loop=true;audio.volume=.44;audio.preload='metadata';
+function skipSilentIntro(){
+  if(audio.readyState>=1&&audio.currentTime<1){
+    try{audio.currentTime=MUSIC_IN_POINT}catch(err){}
+  }
+}
+audio.addEventListener('loadedmetadata',skipSilentIntro);
+audio.addEventListener('timeupdate',()=>{
+  // Safari/Chrome reset a looping MP3 to 0; skip the silent lead-in every loop.
+  if(!audio.paused&&audio.duration>150&&audio.currentTime<.7)skipSilentIntro();
+});
 function syncMusicButtons(){const playing=!audio.paused&&!audio.ended;musicIDs.forEach(id=>{const b=$(id);if(!b)return;b.classList.toggle('is-playing',playing);b.setAttribute('aria-label',playing?'暂停生日钢琴曲':'播放生日钢琴曲');b.setAttribute('aria-pressed',String(playing));b.title=playing?'暂停音乐':'点击播放音乐'});const hint=$('musicHint');if(hint){hint.textContent=playing?'音乐正在播放 · 点击暂停':'轻触音符开启音乐 ↗';hint.classList.toggle('hint-off',playing)}}
-function requestMusic(){musicPreferredOn=true;audio.muted=false;audio.volume=.44;audio.loop=true;try{const result=audio.play();if(result&&typeof result.catch==='function')result.catch(()=>{syncMusicButtons();toast('轻触右上角音符，即可开启音乐')})}catch(e){syncMusicButtons();toast('轻触右上角音符，即可开启音乐')}syncMusicButtons()}
+function requestMusic(){musicPreferredOn=true;audio.muted=false;audio.volume=.44;audio.loop=true;skipSilentIntro();try{const result=audio.play();if(result&&typeof result.catch==='function')result.catch(()=>{syncMusicButtons();toast('轻触右上角音符，即可开启音乐')})}catch(e){syncMusicButtons();toast('轻触右上角音符，即可开启音乐')}syncMusicButtons()}
 function music(){if(!audio.paused){musicPreferredOn=false;audio.pause()}else{requestMusic()}syncMusicButtons()}
 musicIDs.forEach(id=>{const b=$(id);if(b)b.addEventListener('click',music)});
 audio.addEventListener('play',syncMusicButtons);audio.addEventListener('pause',syncMusicButtons);audio.addEventListener('ended',syncMusicButtons);
