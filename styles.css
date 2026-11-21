@@ -1,0 +1,128 @@
+@font-face{font-family:localserif;src:local('Songti SC')} :root{--gold:#dfc48d;--light:#fff3d5;--muted:#dfd3b8;--bg:#061b13}*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#030e09;color:var(--light);font-family:'Songti SC','STSong','Noto Serif CJK SC',serif;-webkit-font-smoothing:antialiased}button{cursor:pointer;font-family:inherit;touch-action:manipulation}button:focus-visible{outline:2px solid #fff4c2;outline-offset:3px}img{display:block;width:100%}.app{width:100%;max-width:530px;margin:0 auto;min-height:100dvh;background:#061b13;position:relative;box-shadow:0 0 70px #0009}.screen{height:100dvh;min-height:580px;width:100%;position:relative;isolation:isolate;display:none;flex-direction:column;align-items:center;overflow:hidden;text-align:center;padding:calc(21px + env(safe-area-inset-top)) 22px calc(20px + env(safe-area-inset-bottom));background:linear-gradient(180deg,#04150c9e,#03110ba8),url('assets/forest_story.webp') center/cover}.screen.active{display:flex;animation:fadein .72s ease both}@keyframes fadein{from{opacity:0}to{opacity:1}}#curtain{position:fixed;inset:0;background:#020904;z-index:50;pointer-events:none;animation:curtain 2.5s ease forwards}@keyframes curtain{0%,17%{opacity:1}100%{opacity:0;visibility:hidden}}.header{display:flex;justify-content:space-between;align-items:center;width:100%;gap:12px;z-index:4;min-height:39px}.brand{font:11px Georgia,serif;letter-spacing:.33em;color:#e2d1a7}.mini{background:#082419a8;border:1px solid #c9af7488;border-radius:50%;color:#e4cca0;min-width:39px;height:39px;font-size:18px}.kicker{font:10px/1.5 -apple-system,BlinkMacSystemFont,sans-serif;letter-spacing:.3em;color:#e6cb93}.heading{font-size:clamp(30px,8.2vw,43px);line-height:1.4;font-weight:400;color:#f0d9a5;margin:8px 0}.rule{width:155px;height:1px;background:linear-gradient(90deg,transparent,#d7b676,transparent);margin:9px auto}.prose{font-size:14px;line-height:2.02;letter-spacing:.055em;color:#f0e4cc}.soft{color:#d3c5a8}.small{font-size:11px;color:#dac7a6}.cta{background:linear-gradient(120deg,#17442f,#09291d);border:1px solid #e7c98c;border-radius:99px;min-height:53px;padding:11px 25px;font-size:17px;color:#f8e8c4;box-shadow:inset 0 0 14px #bc9c5824,0 7px 23px #0009;letter-spacing:.05em;min-width:235px}.cta:active{transform:scale(.975)}.ghost{border:0;background:transparent;color:#e5d2ae;padding:10px 13px;font-size:13px}.actions{display:flex;align-items:center;justify-content:center;gap:13px;width:100%;position:relative;z-index:4}.bottom{margin-top:auto;position:relative;z-index:4;width:100%}.flower{font-size:16px;color:#d9bf84}.notice{font-size:12px;color:#ddd0b0}.center{margin:auto 0}.cinema-overlay{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#02100895 1%,transparent 31%,#06140bd4 93%)}
+/* Scene 1: restrained birthday opening, no tree icons / company building */
+#intro{justify-content:space-between;background:linear-gradient(180deg,#03150ba8 5%,#03150b55 54%,#03150cbb 100%),url('assets/forest_story.webp') center/cover}#intro .intro-main{margin:auto 0;z-index:2;text-shadow:0 2px 12px #001d11}#intro h1{font-size:clamp(49px,14vw,67px);letter-spacing:.06em;color:#f4dfb5;font-weight:400;margin:9px 0}#intro .intro-name{font-size:23px;letter-spacing:.15em;color:#f0d5a2;margin:13px 0}.english{font:italic 15px Georgia,serif;letter-spacing:.02em;color:#ebce99}#intro .bottom{padding-bottom:8px}.signature{font-family:Georgia,serif;font-style:italic;color:#e5c98b;font-size:13px}
+/* Scene 2: memories staged as big real photograph not tiny cards */
+#memory .memory-wrap{width:100%;flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px}#memory .heading{font-size:27px}#memory .polaroid{width:min(100%,385px);height:min(51dvh,490px);background:#eee6d6;padding:10px 10px 24px;box-shadow:0 16px 44px #000b;transform:rotate(-1.2deg)}#memory .polaroid img{height:100%;object-fit:cover}#memory .caption{font:italic 11px Georgia,serif;letter-spacing:.15em;color:#d8c8a7}.pagination{display:flex;gap:6px;justify-content:center;margin:10px 0}.pagination span{width:4px;height:4px;background:#827c5d;border-radius:50%}.pagination span.on{background:#f5d996;transform:scale(1.55)}#memory .prose{font-size:13px;line-height:1.8;max-width:390px;min-height:56px;margin:0}#memory .actions{margin-top:9px}#memory .actions button{flex:1;min-width:0;font-size:14px}
+/* Scene 3: old friends -> special cyber friends */
+#transition{justify-content:center}#transition .transition-frame{border:1px solid #ceb47b66;background:#09261c9c;padding:35px 24px;box-shadow:0 20px 70px #0005;width:100%;max-width:405px}#transition .title{font-size:36px;color:#e9d6a8;line-height:1.45}#transition .prose{font-size:16px;line-height:2.25}#transition .cta{margin-top:19px}
+/* Scene 4: new friends roster */
+#partners .heading{font-size:30px;margin:12px 0 2px}#partners .people-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:15px 8px;width:100%;margin:auto 0;max-width:435px;align-content:center}#partners .person{background:transparent;border:0;padding:0;color:#f2d9a8;min-width:0}#partners .person img{width:100%;aspect-ratio:1;border-radius:50%;object-fit:cover;object-position:center 20%;border:1.2px solid #dabc7b;box-shadow:0 0 0 3px #c3ac6533,0 3px 13px #0008}#partners .person span{display:block;margin:6px -5px 0;font:10px Georgia,serif;letter-spacing:0}#partners .person.done img{border-color:#f5df8f;box-shadow:0 0 0 3px #d7bc6388}#partners .person.done span:after{content:' ✓';color:#dbbf75}#partners .bottom .prose{font-size:13px}#partners .bottom{padding:8px 0}
+/* Scene 5: individual gifts */
+#gift .heading{font-size:28px;margin:2px 0}#gift .gift-stage img.gift-portrait{position:absolute;right:8px;top:4px;width:72px;height:72px;object-fit:cover;object-position:center 19%;border-radius:50%;border:1px solid #d7ba7b;z-index:3;box-shadow:0 5px 20px #0008}#gift .gift-stage{width:100%;flex:1;min-height:0;display:flex;justify-content:center;align-items:center;position:relative;margin:7px 0}#gift .gift-stage img{width:100%;height:100%;object-fit:contain;max-height:47dvh;border:1px solid #b89b6144;box-shadow:0 12px 45px #0009;border-radius:5px}#gift .gift-title{font-size:25px;color:#efd39c;margin:0 0 9px;font-weight:400}#gift .quote{font-size:14px;line-height:1.95;min-height:70px;margin:0 0 10px;color:#efe3c5}.gift-nav{display:flex;justify-content:space-between;width:100%;align-items:center;margin:5px 0}.gift-nav button{background:transparent;color:#edcf8d;border:0;font-size:25px;padding:3px 16px}.progress{font:11px Georgia,serif;color:#e0c89b;letter-spacing:.16em}
+/* Scene 6: tree simplicity */
+#tree{justify-content:space-between;background:linear-gradient(180deg,#04170e80,#03120817 55%,#04140ab0),url('assets/forest_story.webp') center/cover}#tree .tree-body{flex:1;min-height:0;width:100%;display:flex;align-items:center;justify-content:center}#tree .tree-body img{height:100%;width:100%;object-fit:cover;object-position:center 63%;mask-image:linear-gradient(180deg,transparent,#000 13%,#000 83%,transparent)}#tree .tree-head,#tree .tree-foot{position:relative;z-index:2}#tree .prose{font-size:17px}
+/* Scene 7: letter and realistic bracelet */
+#letter{justify-content:center}.letter-paper{background:linear-gradient(150deg,#f4e6c8,#dfcca5);color:#314334;border:1px solid #d3ad75;width:100%;max-width:420px;padding:29px 22px;box-shadow:0 18px 50px #000a;transform:rotate(-.7deg)}.letter-paper h3{font-size:27px;font-weight:400;margin:0}.letter-paper p{font-size:15px;line-height:2.05;text-align:left;margin:16px 0}.letter-paper .from{font-style:italic;text-align:right;font-size:17px;color:#786448}#bracelet{justify-content:space-between}#bracelet .jewel{width:100%;flex:1;min-height:0;display:grid;place-items:center;margin:12px 0;background:radial-gradient(ellipse,#40674565,transparent 65%)}#bracelet .jewel img{width:100%;max-height:53dvh;object-fit:contain;border-radius:7px;box-shadow:0 12px 45px #0007}#bracelet .prose{font-size:14px}
+/* Scene 8: printable postcard */
+#card{justify-content:space-between}.card-art{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;width:100%}.card-design{width:min(90%,340px);height:min(61dvh,575px);padding:13px 13px 16px;background:#f0e7d5;box-shadow:0 15px 45px #000b;color:#38503a;display:flex;flex-direction:column;justify-content:space-between;border:2px solid #e4d8be;outline:1px solid #d8bd87;outline-offset:-8px}.card-design h3{font-size:22px;font-weight:400;margin:9px 0 2px}.card-design img{flex:1;min-height:0;object-fit:cover;object-position:center 48%;margin:4px 0}.card-design p{font-size:13px;line-height:1.7;margin:7px 0}.card-design small{font-size:12px;color:#947647}.card-design .date{font:10px Georgia,serif;letter-spacing:.2em;color:#9c835c}#card .actions{margin-top:14px}#toast{position:fixed;bottom:calc(24px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:max-content;max-width:90vw;background:#102e21;color:#fff0cc;border:1px solid #d7bb83;border-radius:40px;padding:10px 16px;z-index:90;opacity:0;pointer-events:none;transition:opacity .3s;font-size:13px}#toast.show{opacity:1}@media(max-height:720px){#memory .polaroid{height:min(42dvh,370px)}#memory .prose{font-size:12px}#partners .people-grid{gap:9px 7px}#gift .gift-stage img{max-height:35dvh}.heading{font-size:29px}#intro h1{font-size:43px}}@media(min-width:700px){.app{border-left:1px solid #c3a47455;border-right:1px solid #c3a47455}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+
+
+/* V1.1 final: larger character first, gifts only inside modal, one growing tree */
+#partners{padding-left:18px;padding-right:18px;gap:0;justify-content:flex-start;background:linear-gradient(180deg,#021108dc,#031e12b1 58%,#02160ccf),url('assets/forest_story.webp') center/cover}
+.partner-title{color:#efd9a5;font-size:clamp(26px,7vw,35px);font-weight:400;letter-spacing:.035em;line-height:1.32;margin:7px 0 4px;flex-shrink:0}
+.feature-person{flex:1;min-height:0;position:relative;overflow:hidden;width:100%;max-width:450px;margin:3px auto 7px;border:1px solid #bca57059;background:#0b2317;box-shadow:0 14px 45px #0009;display:flex;flex-direction:column}
+.hero-person-image{position:absolute;inset:0;overflow:hidden}.hero-person-image img{height:100%;width:100%;object-fit:cover;object-position:center 18%;filter:saturate(.91);animation:personBreathe 6s ease-in-out alternate infinite}
+@keyframes personBreathe{to{transform:scale(1.045) translateY(-4px)}}
+.hero-person-image:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,#03170e14 20%,#04160b2f 55%,#031209f5 93%)}
+.hero-person-copy{z-index:2;position:relative;margin-top:auto;padding:8px 14px 12px;text-shadow:0 2px 11px #000}.hero-person-copy h2{font:normal 32px Georgia,serif;color:#fff0ca;letter-spacing:.04em;margin:2px 0 1px}.featured-role{font-size:10px;letter-spacing:.16em;color:#e3c88c}.featured-quote{font-size:clamp(12px,3.15vw,14px);line-height:1.75;color:#ffefce;max-width:330px;margin:6px auto 0;min-height:2.9em;text-wrap:balance}
+.partner-roster{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:4px;width:100%;max-width:450px;margin:3px auto 7px;flex-shrink:0}
+.partner-roster .person{display:block;min-width:0;padding:0;background:none;border:0}.partner-roster .person img{width:100%;height:auto;aspect-ratio:1/1;border:1px solid #bda8769e;object-fit:cover;object-position:center 18%;border-radius:50%;background:#244435}.partner-roster .person.active img{border:2px solid #f3dd9f;box-shadow:0 0 10px #d6b46b9a}.partner-roster .person.done img{filter:saturate(.7)}.partner-roster .person span{font:9px Georgia,serif;color:#dcc696;display:block;white-space:nowrap;overflow:hidden;text-overflow:clip;margin-top:2px}
+.partner-footer{width:100%;max-width:450px;display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0}.partner-footer .cta{min-height:43px;font-size:15px;width:100%;max-width:350px}.partner-footer .ghost{font-size:11px;min-height:26px;padding:4px 9px}.partner-footer #goTree{font-size:11px;color:#c6b58b}.leaf-progress{height:62px;width:100%;display:flex;align-items:center;justify-content:center;gap:12px}.leaf-progress .living-tree{height:63px;width:69px;flex:0 0 69px}.leaf-progress div{display:flex;flex-direction:column;text-align:left;gap:4px}.leaf-progress span{color:#f6dc9d;font-size:14px}.leaf-progress small{color:#d5c4a1;font-size:9px}
+.living-tree{width:100%;max-height:100%;overflow:visible;filter:drop-shadow(0 8px 11px #0009)}.living-tree .leaf-clusters g{opacity:.025;transform:scale(.72);transform-box:fill-box;transform-origin:center;transition:opacity .75s ease,transform .75s ease}.living-tree .leaf-clusters g.grown{opacity:1;transform:scale(1)}
+#tree{background:radial-gradient(ellipse at 50% 44%,#294b30 0%,#102a1c 54%,#04160e 100%);justify-content:space-between}#tree:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 46%,#d2b67a20,transparent 64%);opacity:1;filter:none;z-index:-1;transform:none}#tree .tree-body{flex:1;min-height:0;padding:4px 15px 0;display:grid;place-items:center;width:100%}#tree .tree-body .living-tree{width:min(100%,420px);height:min(57dvh,540px);object-fit:contain;mask-image:none}#tree .heading{font-size:clamp(27px,7.3vw,37px);margin:21px 0 8px}#tree .tree-foot{padding-bottom:4px}#tree .tree-foot .prose{margin:7px 0 17px;font-size:16px}
+.gift-overlay{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;background:#020d09e9;padding:calc(14px + env(safe-area-inset-top)) 13px calc(14px + env(safe-area-inset-bottom));-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}.gift-overlay.open{display:flex;animation:fadein .3s ease both}.gift-dialog{width:min(100%,420px);max-height:100%;overflow-y:auto;background:linear-gradient(170deg,#123024,#06190e);border:1px solid #cbb37a91;padding:19px 17px 23px;text-align:center;position:relative;box-shadow:0 20px 80px #000a}.close-present{position:absolute;right:9px;top:4px;color:#e5cca1;font-size:26px;background:none;border:none;padding:6px 10px}.gift-picture{width:min(100%,340px);aspect-ratio:1;display:grid;place-items:center;margin:15px auto 12px;border:1px solid #b9a06e59}.gift-picture img{width:100%;height:100%;object-fit:cover}.gift-modal-title{font-size:25px;color:#f1dcab}.gift-modal-words{font-size:14px;line-height:1.9;color:#f1e5d0;min-height:2.7em;max-width:340px;margin:8px auto 17px;text-wrap:balance}.gift-dialog .cta{font-size:15px;min-height:46px}
+#memory .prose{max-width:365px;text-wrap:balance}#transition .prose{font-size:15px}#bracelet .prose{font-size:14px;line-height:1.8;text-wrap:balance}
+@media(max-height:740px){.partner-title{font-size:25px;margin:2px 0}.partner-roster{margin-bottom:3px}.partner-roster .person span{display:none}.leaf-progress{height:42px}.leaf-progress .living-tree{height:44px;width:45px;flex-basis:45px}.partner-footer .cta{min-height:40px}.featured-quote{font-size:12px}.hero-person-copy h2{font-size:26px}}
+@media(prefers-reduced-motion:reduce){.hero-person-image img{animation:none}.living-tree .leaf-clusters g{transition:none}}
+
+
+/* V1.2 FUSION: V0.6 cinematic opening + V1.1 stable screen flow */
+#intro{position:relative;isolation:isolate;overflow:hidden;text-align:left;align-items:stretch;justify-content:space-between;background:#06170f;padding-left:clamp(25px,7vw,38px);padding-right:clamp(25px,7vw,38px)}
+#intro .intro-cinema{position:absolute;inset:-3%;z-index:0;background-image:linear-gradient(180deg,rgba(3,15,9,.34) 0%,rgba(3,15,9,.13) 35%,rgba(3,15,9,.78) 76%,rgba(3,15,9,.96) 100%),url("assets/forest_story.webp");background-position:center;background-size:cover;filter:saturate(.88) brightness(.86);transform:scale(1.08);animation:introCamera 18s cubic-bezier(.2,.55,.3,1) forwards}
+#intro:after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(1,12,7,.26),transparent 78%);}
+#intro .intro-header{position:relative;z-index:4;justify-content:flex-end;min-height:42px}
+#intro .intro-main{position:relative;z-index:2;width:100%;max-width:450px;margin:auto 0 18px;text-align:left;text-shadow:0 3px 20px rgba(0,0,0,.55)}
+#intro .kicker{font-size:10px;letter-spacing:.31em;color:#e5cc94;animation:cinemaRise 1.15s .35s both}
+#intro h1{font-size:clamp(48px,13vw,64px);letter-spacing:.07em;line-height:1.22;font-weight:400;color:#f6e3b9;margin:17px 0 8px;animation:cinemaRise 1.3s .55s both}
+#intro .english{font:italic 16px Georgia,serif;letter-spacing:.09em;color:#ead4a5;animation:cinemaRise 1.2s .78s both}
+#intro .rule{width:88px;margin:21px 0 17px;background:linear-gradient(90deg,#dfc48d,transparent)}
+#intro .intro-name{font-size:19px;letter-spacing:.18em;margin:0 0 12px;color:#f0d5a2;animation:cinemaRise 1.2s .95s both}
+#intro .intro-lead{font-size:14px;line-height:2.1;letter-spacing:.08em;max-width:340px;margin:0;color:#f0e4cc;animation:cinemaRise 1.2s 1.1s both}
+#intro .intro-cue{display:flex;align-items:center;gap:11px;margin-top:23px;font:9px Georgia,serif;letter-spacing:.25em;color:#d9c18d;animation:cinemaRise 1.2s 1.3s both}
+#intro .intro-cue span{display:block;width:27px;height:1px;background:#d9c18d;box-shadow:0 0 10px #d9c18d;}
+#intro .intro-bottom{position:relative;z-index:4;align-items:flex-start;text-align:left;padding:0 0 max(4px,1vh);gap:7px;animation:cinemaRise 1.25s 1.4s both}
+#intro .intro-cta{width:min(100%,340px);min-width:0;min-height:55px;text-align:center}
+#intro .intro-bottom .small{margin:5px 0 0 4px;letter-spacing:.2em;color:#d8c7a4;font:9px Georgia,serif}
+@keyframes introCamera{from{transform:scale(1.08)}to{transform:scale(1.0)}}
+@keyframes cinemaRise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+#tree .tree-body .living-tree{width:min(100%,420px);height:min(57dvh,540px);object-fit:contain;mask-image:none}
+#tree .living-tree .leaf-clusters g{opacity:.055;transform:scale(.38);transform-box:fill-box;transform-origin:center;transition:opacity .95s ease,transform .95s cubic-bezier(.2,.7,.2,1)}
+#tree .living-tree .leaf-clusters g.grown{opacity:1;transform:scale(1)}
+.leaf-progress .living-tree .leaf-clusters g{opacity:.035;transform:scale(.4)}
+.leaf-progress .living-tree .leaf-clusters g.grown{opacity:1;transform:scale(1)}
+@media (max-height:700px){#intro .intro-main{margin:auto 0 8px}#intro h1{font-size:clamp(42px,11vw,54px);margin:10px 0 5px}#intro .intro-cue{margin-top:12px}#tree .tree-body .living-tree{height:min(49dvh,420px)}}
+@media (prefers-reduced-motion:reduce){#intro .intro-cinema,#intro .intro-main,#intro .intro-bottom{animation:none!important}#intro .intro-main,#intro .intro-bottom{opacity:1;transform:none}}
+
+
+/* V1.3 FINAL PATCH — immersive memories, restrained cinematic motion */
+#memory .memory-wrap{gap:clamp(5px,1.15dvh,11px);justify-content:center;padding-inline:8px}
+#memory .heading{font-size:clamp(24px,7vw,32px);margin:0;text-shadow:0 2px 16px #00180d}
+#memory .memory-cinema{position:relative;width:min(100%,465px);height:clamp(295px,52dvh,550px);flex-shrink:1;min-height:0;overflow:hidden;border:0;background:#071c13;border-radius:3px;isolation:isolate;box-shadow:0 18px 52px #020d087a}
+#memory .memory-cinema>img{width:100%;height:100%;object-fit:cover;object-position:center center;display:block;transform:scale(1.015);animation:memFilmIn .9s ease both;filter:saturate(.91) contrast(1.035)}
+#memory .memory-cinema .memory-vignette{position:absolute;pointer-events:none;inset:-1px;background:radial-gradient(ellipse 79% 70% at 50% 46%,transparent 49%,#071c1350 75%,#071c13c5 99%),linear-gradient(0deg,#08190fdd 0%,transparent 18%,transparent 84%,#08190f95 100%);box-shadow:inset 0 0 22px 15px #071c1380;z-index:1}
+#memory .caption,#memory .prose{max-width:355px;text-align:center;margin-inline:auto;text-wrap:balance}
+#memory .prose{line-height:1.7;font-size:clamp(13px,3.5vw,15px);max-height:7.4em;overflow:auto}
+#memory .pagination{margin-block:0}
+#memory .actions.bottom{padding-block:8px max(14px,env(safe-area-inset-bottom))}
+@keyframes memFilmIn{from{opacity:.24;transform:scale(1.06);filter:blur(6px) saturate(.65)}to{opacity:1;transform:scale(1.015);filter:blur(0) saturate(.91)}}
+/* Completion CTA becomes visually distinct only when all ten gifts are gathered. */
+#goTree.is-complete{background:linear-gradient(125deg,#ebd4a2,#ae8747);color:#102318;border:1px solid #f7e2ac;box-shadow:0 4px 20px #d9b45c55, inset 0 1px 0 #fff7dd88;font-weight:700;animation:goTreePulse 2.25s ease-in-out infinite}
+@keyframes goTreePulse{0%,100%{box-shadow:0 3px 14px #d9b45c33}50%{box-shadow:0 4px 25px #d9b45c88}}
+#goTree:not(.is-complete){opacity:.60}
+/* The ending keeps a true gallery-quality portrait composition, without white photo-card borders. */
+#card .card-design{position:relative;overflow:hidden;background:linear-gradient(180deg,#071a12 0%,#1d3d2e 75%,#0b2117 100%);border:1px solid #c5a16c90;border-radius:8px;box-shadow:0 18px 60px #0008}
+#card .card-design:after{content:'';position:absolute;inset:8px;border:1px solid #e6cb9960;pointer-events:none;border-radius:3px}
+#card .card-design h3,#card .card-design .date{position:relative;z-index:2;color:#f0dcb8}
+#card .card-design img{mask-image:linear-gradient(to bottom,transparent 0%,#000 10%,#000 80%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 10%,#000 80%,transparent 100%)}
+#card .card-design .wish,#card .card-design .signature{position:relative;z-index:2}
+@media (max-height:740px){#memory .memory-cinema{height:44dvh}#memory .memory-wrap{gap:5px}}
+@media (prefers-reduced-motion:reduce){#memory .memory-cinema>img,#goTree.is-complete{animation:none!important}}
+
+/* V1.3 onscreen keepsake now matches the exported emerald-and-gold KV. */
+#card .card-design{padding:16px 17px 18px;outline:none;display:flex;align-items:center;gap:5px;justify-content:space-between}
+#card .card-design h3{font-size:clamp(23px,6vw,30px);font-weight:600;margin:8px 0 0;text-align:center;color:#f6e6be;text-shadow:0 2px 10px #0007}
+#card .card-design .date{color:#d8bc8b;font:10px Georgia,serif;letter-spacing:.19em;text-align:center;margin-bottom:2px}
+#card .card-design img{width:100%;height:auto;flex:1;min-height:0;object-fit:cover;object-position:center 42%;margin:2px 0 0;opacity:.96}
+#card .card-design p{font-size:clamp(12px,3vw,15px);color:#f5e4bd;text-align:center;line-height:1.85;margin:4px 0;text-shadow:0 1px 7px #00180b}
+#card .card-design small{color:#ebce94;text-align:center;font-size:12px;margin:4px 0 2px}
+
+/* V1.4 bespoke full-bleed gilded botanical birthday KV */
+#card .card-design.card-kv-master{background:transparent;padding:0;border:0;outline:0;box-shadow:0 13px 45px #0008;width:min(89%,330px);height:min(67dvh,580px);overflow:hidden;border-radius:7px;display:block}
+#card .card-design.card-kv-master img{display:block;width:100%;height:100%;object-fit:contain;margin:0}
+#card .actions{margin-top:9px}
+#card #replay{font-size:15px;border:1px solid #bfa06a85;border-radius:32px;padding:12px 30px;margin-top:5px;background:#102c21a6}
+
+/* V1.6: approved 3:4 keepsake replaces card art only */
+#card .card-design.card-kv-master{aspect-ratio:3/4;height:auto;max-height:min(68dvh,580px);width:auto;max-width:min(88vw,435px);box-shadow:0 15px 44px #0009}
+#card .card-design.card-kv-master img{width:100%;height:100%;object-fit:contain}
+
+/* V1.7 copy-only readability fix: let the full founder letter scroll inside its paper. */
+#letter .letter-paper{max-height:calc(100dvh - 190px);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;scrollbar-width:thin;}
+#letter .letter-paper p{font-size:clamp(13px,3.5vw,15px);line-height:1.82;margin:14px 0;}
+#letter .letter-paper::-webkit-scrollbar{width:3px;}
+#letter .letter-paper::-webkit-scrollbar-thumb{background:#b99b67;}
+@media(max-height:700px){#letter .letter-paper{max-height:calc(100dvh - 160px);padding:18px 17px;}#letter .letter-paper p{line-height:1.7}}
+#letter .letter-scroll-hint{font-size:11px;color:#d9c494;letter-spacing:.08em;margin:4px 0 8px;opacity:.85;}
+
+
+
+.music-entry{display:flex;align-items:center;gap:9px;justify-content:flex-end;min-width:0}
+.music-hint{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC',sans-serif;font-size:11px;letter-spacing:.01em;color:#f3dfb7;text-shadow:0 1px 6px #000c;max-width:110px;line-height:1.4;white-space:normal;text-align:right;animation:musicNudge 2.4s ease-in-out infinite}
+.music-hint.hint-off{opacity:.7;animation:none}
+.music-control{display:inline-flex;align-items:center;justify-content:center;position:relative;flex-shrink:0}
+.music-glyph{display:inline-block;line-height:1;transform-origin:center center}
+.music-control.is-playing .music-glyph{animation:musicSpin 4s linear infinite;color:#fbe6b5}
+.music-control.is-playing{border-color:#e0be7f;box-shadow:0 0 0 2px #f4d39117,0 0 17px #cfa85c50}
+@keyframes musicSpin{to{transform:rotate(360deg)}}
+@keyframes musicNudge{0%,100%{opacity:.7}50%{opacity:1}}
+@media(prefers-reduced-motion:reduce){.music-control.is-playing .music-glyph,.music-hint{animation:none!important}}
