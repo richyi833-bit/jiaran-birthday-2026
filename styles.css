@@ -139,3 +139,7 @@
 #memory .memory-cinema.is-wide>img{position:relative;z-index:1;object-fit:contain;object-position:center center!important;transform:none;animation:memWideIn .65s ease both;filter:saturate(.97)}
 #memory .memory-cinema.is-wide .memory-vignette{z-index:2;background:linear-gradient(0deg,#071c13a6 0%,transparent 13%,transparent 89%,#071c136b 100%);box-shadow:none}
 @keyframes memWideIn{from{opacity:.2}to{opacity:1}}
+
+/* V1.11 Chinese-name micro-correction. Coordinates refer to original 1086x1448 card. */
+#card .card-design.card-kv-master{position:relative}
+#card .card-design.card-kv-master img.corrected-name-overlay{position:absolute;z-index:2;left:48.158%;top:7.044%;width:11.05%;height:6.906%;object-fit:fill;pointer-events:none;max-height:none;margin:0;opacity:1}
