@@ -29,7 +29,7 @@ $('memImage').addEventListener('load',()=>photoFrame.classList.remove('photo-pen
 $('memImage').addEventListener('error',()=>{photoFrame.classList.remove('photo-pending');photoFrame.classList.add('photo-error');photoMessage.textContent='照片加载失败，轻触重试'});
 photoMessage.onclick=()=>{if(!photoFrame.classList.contains('photo-error'))return;photoFrame.classList.replace('photo-error','photo-pending');photoMessage.textContent='正在重试…';$('memImage').src=asset(MEMORIES[memIndex][2])+'?retry='+Date.now()};
 let scene='intro',memIndex=0,personIndex=0;let collected=[];/* Fresh visit starts without previous-version demo progress; collection persists only in this tab. */
-function show(id){scene=id;document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===id));window.scrollTo(0,0);if(id==='memory')drawMemory();if(id==='transition'){preloadPhoto('cyrus.webp',true);preloadPhoto('arden.webp');preloadPhoto('rowan.webp')}if(id==='partners')drawPartners();if(id==='tree'||id==='letter'){preloadPhoto('bracelet_authentic.webp',true);preloadPhoto('birthday_card.png')}if(id==='bracelet')preloadPhoto('birthday_card.png',true);if(id==='card')$('finalCardArt').loading='eager';if(id==='tree')updateTree()}
+function show(id){scene=id;document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===id));window.scrollTo(0,0);if(id==='memory')drawMemory();if(id==='transition'){preloadPhoto('cyrus.webp',true);preloadPhoto('arden.webp');preloadPhoto('rowan.webp')}if(id==='partners')drawPartners();if(id==='tree'||id==='letter'){preloadPhoto('bracelet_authentic.webp',true);preloadPhoto('birthday_card.png')}if(id==='bracelet')preloadPhoto('birthday_card.png',true);if(id==='card'){ $('finalCardArt').loading='eager';prepareCorrectedCard().catch(()=>{}); }if(id==='tree')updateTree()}
 let timer;function toast(t){$('toast').textContent=t;$('toast').classList.add('show');clearTimeout(timer);timer=setTimeout(()=>$('toast').classList.remove('show'),1800)}
 const audio=$('audio');
 const musicIDs=['musicBtn','memMusic','transitionMusic','partnersMusic','treeMusic','letterMusic','braceletMusic','cardMusic'];
@@ -83,19 +83,50 @@ const centers=[[130,210],[468,182],[185,113],[418,110],[291,51],[109,298],[510,2
 function initTree(tag){const root=document.querySelector('[data-tree="'+tag+'"]');if(!root)return;const NS='http://www.w3.org/2000/svg';for(let k=0;k<10;k++){const group=document.createElementNS(NS,'g');group.dataset.n=k;const [x,y]=centers[k];for(let j=0;j<15;j++){const a=j*2.399+(.2*k),r=12+Math.sqrt(j)*11,cx=x+Math.cos(a)*r,cy=y+Math.sin(a)*r,el=document.createElementNS(NS,'ellipse');el.setAttribute('cx',cx.toFixed(1));el.setAttribute('cy',cy.toFixed(1));el.setAttribute('rx',String(9+(j%3)*2));el.setAttribute('ry',String(5+(j%2)*2));el.setAttribute('transform','rotate('+(j*57)+' '+cx+' '+cy+')');el.setAttribute('fill',['#78965c','#9bb46a','#416c48','#d1bc75','#638851'][j%5]);group.appendChild(el)}root.appendChild(group)}}
 initTree('miniTree');initTree('fullTree');function updateTree(){document.querySelectorAll('.leaf-clusters g').forEach(g=>g.classList.toggle('grown',Number(g.dataset.n)<collected.length))}
 $('goLetter').onclick=()=>show('letter');$('seeBracelet').onclick=()=>show('bracelet');$('getCard').onclick=()=>show('card');$('replay').onclick=()=>{if(!confirm('重温这趟旅程将清空已收集的10份礼物，确定重新开始吗？'))return;collected=[];personIndex=0;memIndex=0;try{sessionStorage.removeItem('jiaran15-collected')}catch{}updateTree();drawPartners();closeModal();audio.pause();audio.currentTime=0;musicPreferredOn=true;syncMusicButtons();show('intro');toast('旅程已重置，祝福可以重新收集')};
+/* Final approved name patch. Only the top-right "冉" character area changes.
+   Composite the PNG locally so the saved picture is identical to the displayed card. */
+let correctedCardUrl=null, correctedCardPromise=null;
+function prepareCorrectedCard(){
+ if(correctedCardUrl)return Promise.resolve(correctedCardUrl);
+ if(correctedCardPromise)return correctedCardPromise;
+ correctedCardPromise=(async()=>{
+  const base=new Image();base.src='assets/birthday_card.png';
+  const correction=new Image();correction.src='assets/name_correction.webp';
+  await Promise.all([
+   base.decode?base.decode():new Promise((ok,bad)=>{base.onload=ok;base.onerror=bad}),
+   correction.decode?correction.decode():new Promise((ok,bad)=>{correction.onload=ok;correction.onerror=bad})
+  ]);
+  if(base.naturalWidth!==1086||base.naturalHeight!==1448)throw new Error('Unexpected birthday card dimensions');
+  const canvas=document.createElement('canvas');canvas.width=1086;canvas.height=1448;
+  const ctx=canvas.getContext('2d');if(!ctx)throw new Error('Canvas unsupported');
+  ctx.drawImage(base,0,0);
+  ctx.drawImage(correction,523,102,120,100);
+  const blob=await new Promise((ok,bad)=>canvas.toBlob(b=>b?ok(b):bad(new Error('PNG conversion failed')),'image/png'));
+  correctedCardUrl=URL.createObjectURL(blob);
+  const displayed=$('finalCardArt'); displayed.src=correctedCardUrl;
+  const overlay=$('correctedNameOverlay');if(overlay)overlay.style.display='none';
+  return correctedCardUrl;
+ })().catch(error=>{correctedCardPromise=null;console.warn('Card composite failed',error);throw error});
+ return correctedCardPromise;
+}
 $('saveCard').onclick=()=>{
- const img=$('finalCardArt');const filename='佳冉_向阳而生_生日纪念卡.png';
- // iOS browsers cannot silently save into Photos; open the real PNG for long-press save.
- if(/iPhone|iPad|iPod/i.test(navigator.userAgent)){
-   const opened=window.open(img.src,'_blank');
-   if(opened){toast('请在新打开的图片上长按，选择保存到照片');return}
-   toast('请长按卡片图片，选择保存到照片');return;
- }
- fetch(img.src).then(r=>{if(!r.ok)throw new Error('image '+r.status);return r.blob()}).then(blob=>{
-   const uri=URL.createObjectURL(blob);const a=document.createElement('a');
-   a.href=uri;a.download=filename;document.body.appendChild(a);a.click();a.remove();
-   setTimeout(()=>URL.revokeObjectURL(uri),8000);toast('生日纪念卡已下载');
- }).catch(()=>{const a=document.createElement('a');a.href=img.src;a.download=filename;document.body.appendChild(a);a.click();a.remove();toast('请检查浏览器下载记录')});
+ const filename='佳冉_向阳而生_生日纪念卡.png';
+ const ios=/iPhone|iPad|iPod/i.test(navigator.userAgent);
+ // Open synchronously during the user gesture so Safari permits a new image tab.
+ const tab=ios?window.open('about:blank','_blank'):null;
+ prepareCorrectedCard().then(url=>{
+  if(ios){
+   if(tab){tab.location.href=url;toast('请在新打开的图片上长按，选择保存到照片')}
+   else{window.location.href=url}
+   return;
+  }
+  const anchor=document.createElement('a');anchor.href=url;anchor.download=filename;
+  document.body.appendChild(anchor);anchor.click();anchor.remove();
+  toast('生日纪念卡已下载');
+ }).catch(()=>{
+  if(tab&&!tab.closed)tab.close();
+  toast('图片正在加载，请稍后重试');
+ });
 };
 show('intro');
 preloadPhoto('campus-mobile.webp',true);
